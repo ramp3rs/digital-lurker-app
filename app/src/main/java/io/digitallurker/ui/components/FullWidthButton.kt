@@ -1,4 +1,4 @@
-package io.digitallurker.ui.components.authientication
+package io.digitallurker.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

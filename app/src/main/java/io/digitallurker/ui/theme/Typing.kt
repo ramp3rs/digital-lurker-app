@@ -47,7 +47,7 @@ object Typing {
     val paragraph = TextStyle(
         color = ColorPalette.secondary,
         fontFamily = fontFam,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
     )
 }
