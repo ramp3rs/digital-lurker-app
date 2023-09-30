@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -24,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import io.digitallurker.ui.components.FullWidthButton
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
@@ -33,19 +37,32 @@ fun CustomDatePickerDialog(onDismiss: (String?) -> Unit) {
     Dialog(onDismissRequest = { onDismiss(null) }) {
         Surface(
             color = ColorPalette.background,
+            shape = Measurements.roundedShape,
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     "Pick a date",
                     style = Typing.headline2,
                 )
+                var year = ""
+                var month = ""
+                var day = ""
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    InputField(placeholder = "yyyy") {}
-                    InputField(placeholder = "mm") {}
-                    InputField(placeholder = "dd") {}
+                    InputField(placeholder = "yyyy") { year = it }
+                    InputField(placeholder = "mm") { month = it }
+                    InputField(placeholder = "dd") { day = it }
+                }
+                FullWidthButton(onClick = { onDismiss("$year-$month-$day") }) {
+                    Row {
+                        Text("Save")
+                        Icon(
+                            Icons.Rounded.Done,
+                            contentDescription = "Save data",
+                        )
+                    }
                 }
             }
         }

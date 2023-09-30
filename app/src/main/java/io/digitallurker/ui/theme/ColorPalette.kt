@@ -9,5 +9,5 @@ object ColorPalette {
     val darkBackground = Color(0xFFC9C9C9)
 
     // Additional colors
-    val red = Color(0xFFFF7B60)
+    val red = Color(0xFFFF0000)
 }

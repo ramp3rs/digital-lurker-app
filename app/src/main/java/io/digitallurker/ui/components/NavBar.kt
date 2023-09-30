@@ -22,7 +22,7 @@ fun NavBar(navCtrl: NavController) {
             .fillMaxWidth()
             .height(60.dp)
             .background(
-                color = ColorPalette.darkBackground,
+                color = ColorPalette.primary,
                 shape = RoundedCornerShape(
                     topStart = 30.dp,
                     topEnd = 30.dp,

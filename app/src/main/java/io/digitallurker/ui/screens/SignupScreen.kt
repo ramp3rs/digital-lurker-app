@@ -98,7 +98,6 @@ fun SignupScreen(navCtrl: NavController) {
 
             FullWidthButton(
                 onClick = {
-
                     val successfulSignup =
                         UserController.signup(
                             usernameValue,

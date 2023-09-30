@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.rounded.Edit
+import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,8 +32,21 @@ fun SettingsScreen(navCtrl: NavController) {
             UniversalHeader(navCtrl = navCtrl, caption = "Settings")
 
             SettingsElement(
-                icon = Icons.Outlined.Edit,
+                icon = Icons.Rounded.Edit,
                 caption = "Edit profile",
+            ) { navCtrl.navigate("/edit-profile") }
+            Spacer(Modifier.height(15.dp))
+
+            SettingsElement(
+                icon = Icons.Rounded.Lock,
+                caption = "Security",
+            ) {}
+            Spacer(Modifier.height(15.dp))
+
+            SettingsElement(
+                icon = Icons.Rounded.ExitToApp,
+                caption = "Log out",
+                isLogout = true,
             ) {}
         }
     }
