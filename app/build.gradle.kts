@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "io.digitallurker"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "io.digitallurker"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -66,4 +66,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    implementation("androidx.navigation:navigation-compose:2.7.3")
 }
