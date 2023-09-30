@@ -8,6 +8,11 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 
+import io.github.cdimascio.dotenv.dotenv
+
+val dotenv = dotenv()
+val host = dotenv["HOST_NAME"]
+
 object UserController {
     fun login(
         email: String,
@@ -19,7 +24,7 @@ object UserController {
             .add("password", password)
             .build()
         val req = Request.Builder()
-            .url("http://192.168.125.141:8000/auth/token/")
+            .url("$host/auth/token/")
             .post(formData)
             .build()
 
@@ -53,7 +58,7 @@ object UserController {
             .add("password", password)
             .build()
         val req = Request.Builder()
-            .url("")
+            .url("$host/users/post")
             .post(formData)
             .build()
         var successfulSignup = false
