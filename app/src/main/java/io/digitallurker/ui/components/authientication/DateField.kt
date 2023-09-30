@@ -1,5 +1,7 @@
 package io.digitallurker.ui.components.authientication
 
+import android.icu.util.Measure
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -24,8 +26,14 @@ import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
 
 @Composable
-fun DateField(caption: String, placeholder: String) {
+fun DateField(
+    caption: String,
+    placeholder: String,
+    onValueSelect: (String) -> Unit,
+) {
     val showDatePicker = remember { mutableStateOf(false) }
+
+    val inputValue = remember { mutableStateOf<String?>(null) }
     Column {
         Text(
             caption,
@@ -37,6 +45,10 @@ fun DateField(caption: String, placeholder: String) {
                 .height(Measurements.textFieldHeight)
                 .height(Measurements.textFieldHeight)
                 .clip(Measurements.roundedShape)
+                .background(
+                    color = ColorPalette.secondary.copy(alpha = 0.05f),
+                    shape = Measurements.roundedShape,
+                )
                 .border(
                     color = ColorPalette.secondary.copy(alpha = 0.1f),
                     shape = Measurements.roundedShape,
@@ -48,7 +60,10 @@ fun DateField(caption: String, placeholder: String) {
             Row {
                 Spacer(Modifier.width(16.dp))
                 Text(
-                    placeholder,
+                    text = when (inputValue.value) {
+                        null -> placeholder
+                        else -> inputValue.value!!
+                    },
                     style = Typing.paragraph.copy(
                         color = ColorPalette.secondary.copy(alpha = 0.3f),
                         fontSize = 14.sp,
@@ -60,7 +75,8 @@ fun DateField(caption: String, placeholder: String) {
 
     if (showDatePicker.value) {
         CustomDatePickerDialog {
-
+            if (it != null) onValueSelect(it)
+            showDatePicker.value = false
         }
     }
 }

@@ -71,8 +71,7 @@ fun ValueField(
                 color = ColorPalette.secondary,
                 fontSize = 14.sp,
             ),
-            keyboardOptions =
-            when (isPassword) {
+            keyboardOptions = when (isPassword) {
                 true -> KeyboardOptions(keyboardType = KeyboardType.Password)
                 false -> KeyboardOptions.Default
             },

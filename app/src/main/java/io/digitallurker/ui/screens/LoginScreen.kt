@@ -15,6 +15,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -29,6 +31,7 @@ import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
 import io.digitallurker.R
+import io.digitallurker.utils.AuthValidation
 
 @Composable
 fun LoginScreen(navCtrl: NavController) {
@@ -66,10 +69,11 @@ fun LoginScreen(navCtrl: NavController) {
 
             FullWidthButton(
                 onClick = {
-                    val isSuccessful = UserController.login(emailValue, passwordValue)
-                    if (isSuccessful) {
-                        navCtrl.navigate("/home")
-                    }
+//                    val isSuccessful = UserController.login(emailValue, passwordValue)
+//                    if (isSuccessful) {
+//                    }
+                    //FIXME
+                    navCtrl.navigate("/home")
                 },
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

@@ -17,19 +17,24 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.digitallurker.R
+import io.digitallurker.controllers.UserController
 import io.digitallurker.ui.components.authientication.AuthienticationHeadline
 import io.digitallurker.ui.components.FullWidthButton
+import io.digitallurker.ui.components.authientication.DateField
 import io.digitallurker.ui.components.authientication.LoginSignupText
 import io.digitallurker.ui.components.authientication.ValueField
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
+import io.digitallurker.utils.AuthValidation
 
 @Composable
 fun SignupScreen(navCtrl: NavController) {
@@ -45,7 +50,7 @@ fun SignupScreen(navCtrl: NavController) {
         ) {
             Image(
                 painter = painterResource(R.drawable.authientication_img),
-                contentDescription = "Authientication image",
+                contentDescription = "Authentication image",
             )
 
             AuthienticationHeadline("Become a member!")
@@ -62,7 +67,15 @@ fun SignupScreen(navCtrl: NavController) {
             ValueField(
                 caption = "E-mail",
                 placeholder = "Provide your e-mail",
-            ) { emailValue = it }
+
+                ) { emailValue = it }
+            Spacer(Modifier.height(15.dp))
+
+            var dateOfBirth = ""
+            DateField(
+                caption = "Date of birth",
+                placeholder = "Your date of birth",
+            ) { dateOfBirth = it }
             Spacer(Modifier.height(15.dp))
 
             var passwordValue = ""
@@ -70,7 +83,8 @@ fun SignupScreen(navCtrl: NavController) {
                 caption = "Password",
                 placeholder = "Your password",
                 isPassword = true,
-            ) { passwordValue = it }
+
+                ) { passwordValue = it }
             Spacer(Modifier.height(15.dp))
 
             var passwordConfirmationValue = ""
@@ -78,14 +92,23 @@ fun SignupScreen(navCtrl: NavController) {
                 caption = "Confirm password",
                 placeholder = "Repeat password",
                 isPassword = true,
-            ) { passwordConfirmationValue = it }
+
+                ) { passwordConfirmationValue = it }
             Spacer(Modifier.height(15.dp))
 
             FullWidthButton(
                 onClick = {
-                    //TODO signing up user
 
-                    navCtrl.navigate("/home")
+                    val successfulSignup =
+                        UserController.signup(
+                            usernameValue,
+                            emailValue,
+                            passwordValue,
+                            dateOfBirth,
+                        )
+                    if (successfulSignup) {
+                        navCtrl.navigate("/home")
+                    }
                 },
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

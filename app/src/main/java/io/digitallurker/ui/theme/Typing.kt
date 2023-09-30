@@ -23,6 +23,12 @@ private val fontFam = FontFamily(
 )
 
 object Typing {
+    val screenHeadline = TextStyle(
+        color = ColorPalette.secondary,
+        fontFamily = fontFam,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+    )
     val headline = TextStyle(
         color = ColorPalette.secondary,
         fontFamily = fontFam,

@@ -5,15 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import io.digitallurker.ui.screens.HomeScreen
 import io.digitallurker.ui.screens.LoginScreen
+import io.digitallurker.ui.screens.SettingsScreen
 import io.digitallurker.ui.screens.SignupScreen
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.DigitallurkerTheme
@@ -26,7 +29,9 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     color = ColorPalette.background,
                     modifier = Modifier.fillMaxSize(),
-                ) { App() }
+                ) {
+                    Box(contentAlignment = Alignment.BottomCenter) { App() }
+                }
             }
         }
     }
@@ -38,12 +43,13 @@ fun App() {
 
     NavHost(
         navController = navCtrl,
-        startDestination = "/login",
+        startDestination = "/settings",
         enterTransition = { fadeIn() },
         exitTransition = { fadeOut() },
     ) {
         composable("/login") { LoginScreen(navCtrl) }
         composable("/signup") { SignupScreen(navCtrl) }
         composable("/home") { HomeScreen(navCtrl) }
+        composable("/settings") { SettingsScreen(navCtrl) }
     }
 }
