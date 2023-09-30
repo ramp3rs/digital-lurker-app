@@ -69,11 +69,10 @@ fun LoginScreen(navCtrl: NavController) {
 
             FullWidthButton(
                 onClick = {
-//                    val isSuccessful = UserController.login(emailValue, passwordValue)
-//                    if (isSuccessful) {
-//                    }
-                    //FIXME
-                    navCtrl.navigate("/home")
+                    val isSuccessful = UserController.login(emailValue, passwordValue)
+                    if (isSuccessful) {
+                        navCtrl.navigate("/home")
+                    }
                 },
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

@@ -10,14 +10,15 @@ import java.io.IOException
 
 import io.github.cdimascio.dotenv.dotenv
 
-val dotenv = dotenv()
-val host = dotenv["HOST_NAME"]
-
 object UserController {
     fun login(
         email: String,
         password: String,
     ): Boolean {
+//        val dotenv = dotenv()
+//        val host = dotenv["HOST_NAME"]
+        val host = "http://192.168.125.141:8000"
+
         val client = OkHttpClient()
         val formData = FormBody.Builder()
             .add("email", email)
@@ -50,15 +51,19 @@ object UserController {
         dateOfBirth: String,
         password: String,
     ): Boolean {
+//        val dotenv = dotenv()
+//        val host = dotenv["HOST_NAME"]
+        val host = "http://192.168.125.141:8000"
+
         val client = OkHttpClient()
         val formData = FormBody.Builder()
             .add("username", username)
             .add("email", email)
-            .add("date_of_birth", password)
+            .add("date_of_birth", dateOfBirth)
             .add("password", password)
             .build()
         val req = Request.Builder()
-            .url("$host/users/post")
+            .url("$host/users/")
             .post(formData)
             .build()
         var successfulSignup = false

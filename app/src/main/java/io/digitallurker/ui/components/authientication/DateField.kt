@@ -65,7 +65,10 @@ fun DateField(
                         else -> inputValue.value!!
                     },
                     style = Typing.paragraph.copy(
-                        color = ColorPalette.secondary.copy(alpha = 0.3f),
+                        color = ColorPalette.secondary.copy(alpha = when (inputValue.value == null) {
+                            true -> 0.3f
+                            else -> 1f
+                        }),
                         fontSize = 14.sp,
                     ),
                 )
@@ -76,6 +79,7 @@ fun DateField(
     if (showDatePicker.value) {
         CustomDatePickerDialog {
             if (it != null) onValueSelect(it)
+            inputValue.value = it
             showDatePicker.value = false
         }
     }

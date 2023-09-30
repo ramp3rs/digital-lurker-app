@@ -1,12 +1,17 @@
 package io.digitallurker.ui.components.dialogs
 
+import android.content.res.Resources
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
@@ -26,6 +31,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.times
 import androidx.compose.ui.window.Dialog
 import io.digitallurker.ui.components.FullWidthButton
 import io.digitallurker.ui.theme.ColorPalette
@@ -38,8 +44,10 @@ fun CustomDatePickerDialog(onDismiss: (String?) -> Unit) {
         Surface(
             color = ColorPalette.background,
             shape = Measurements.roundedShape,
+            modifier = Modifier.fillMaxWidth(),
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(horizontal = Measurements.screenPadding / 2)) {
+                Spacer(Modifier.height(5.dp))
                 Text(
                     "Pick a date",
                     style = Typing.headline2,
@@ -49,21 +57,29 @@ fun CustomDatePickerDialog(onDismiss: (String?) -> Unit) {
                 var day = ""
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth()
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     InputField(placeholder = "yyyy") { year = it }
                     InputField(placeholder = "mm") { month = it }
                     InputField(placeholder = "dd") { day = it }
                 }
+                Spacer(Modifier.height(10.dp))
+
                 FullWidthButton(onClick = { onDismiss("$year-$month-$day") }) {
-                    Row {
-                        Text("Save")
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Save",
+                            style = Typing.subHeadline.copy(color = ColorPalette.background),
+                            modifier = Modifier.padding(vertical = 5.dp),
+                            )
+                        Spacer(Modifier.width(5.dp))
                         Icon(
                             Icons.Rounded.Done,
                             contentDescription = "Save data",
                         )
                     }
                 }
+                Spacer(Modifier.height(10.dp))
             }
         }
     }
@@ -81,6 +97,8 @@ private fun InputField(placeholder: String, onType: (String) -> Unit) {
         },
         label = "",
     )
+
+    val deviceMetrics = Resources.getSystem().displayMetrics
 
     val inputValue = remember { mutableStateOf("") }
     TextField(
@@ -115,6 +133,7 @@ private fun InputField(placeholder: String, onType: (String) -> Unit) {
         ),
         modifier = Modifier
             .height(Measurements.textFieldHeight)
+            .width(((deviceMetrics.widthPixels / deviceMetrics.density).dp / 3 - (2 * Measurements.screenPadding)) - 10.dp)
             .clip(Measurements.roundedShape)
             .border(
                 color = borderColor.value,
