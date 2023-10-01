@@ -28,8 +28,6 @@ import io.digitallurker.utils.TokenManager.getNewToken
 import kotlinx.coroutines.runBlocking
 import okhttp3.Call
 import okhttp3.Callback
-import okhttp3.FormBody
-import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -53,8 +51,11 @@ fun HomeScreen(navCtrl: NavController) {
             AccountHeadline(navCtrl)
             SearchBar {}
             Spacer(Modifier.height(15.dp))
-            for (p in places.value) {
-                AttractionElement(navCtrl, p)
+//            for (p in places.value) {
+//                AttractionElement(navCtrl, p)
+//            }
+            for (i in 0..10) {
+                AttractionElement(navCtrl)
             }
         }
     }
