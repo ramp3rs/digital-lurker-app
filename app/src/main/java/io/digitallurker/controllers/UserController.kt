@@ -1,5 +1,6 @@
 package io.digitallurker.controllers
 
+import io.digitallurker.utils.PrefsManager
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.FormBody
@@ -9,6 +10,8 @@ import okhttp3.Response
 import java.io.IOException
 
 import io.github.cdimascio.dotenv.dotenv
+import kotlinx.coroutines.runBlocking
+import org.json.JSONObject
 
 object UserController {
     fun login(
@@ -30,18 +33,23 @@ object UserController {
             .build()
 
         var successfulLogin = false
-        client.newCall(req).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
 
-            override fun onResponse(call: Call, response: Response) {
-                if (response.code == 201) {
-                    successfulLogin = true
+        runBlocking{
+            client.newCall(req).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    e.printStackTrace()
                 }
-                println(response.body?.string())
-            }
-        })
+
+                override fun onResponse(call: Call, response: Response) {
+                    if (response.code == 201 || response.code == 200) {
+                        successfulLogin = true
+                        val res = response.body?.string()
+                        PrefsManager.getInstance().edit().putString("refresh", JSONObject(res).getString("refresh")).apply()
+                        PrefsManager.getInstance().edit().putString("access", JSONObject(res).getString("access")).apply()
+                    }
+                }
+            })
+        }
         return successfulLogin
     }
 
