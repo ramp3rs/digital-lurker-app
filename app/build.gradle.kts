@@ -72,4 +72,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.1")
     implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
+    implementation("io.coil-kt:coil-compose:2.1.0")
+
 }

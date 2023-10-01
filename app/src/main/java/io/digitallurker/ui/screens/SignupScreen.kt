@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.digitallurker.R
@@ -28,7 +29,7 @@ import io.digitallurker.ui.components.authientication.AuthienticationHeadline
 import io.digitallurker.ui.components.FullWidthButton
 import io.digitallurker.ui.components.authientication.DateField
 import io.digitallurker.ui.components.authientication.LoginSignupText
-import io.digitallurker.ui.components.authientication.ValueField
+import io.digitallurker.ui.components.ValueField
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
@@ -79,18 +80,16 @@ fun SignupScreen(navCtrl: NavController) {
             ValueField(
                 caption = "Password",
                 placeholder = "Your password",
-                isPassword = true,
-
-                ) { passwordValue = it }
+                keyboardType = KeyboardType.Password,
+            ) { passwordValue = it }
             Spacer(Modifier.height(15.dp))
 
             var passwordConfirmationValue = ""
             ValueField(
                 caption = "Confirm password",
                 placeholder = "Repeat password",
-                isPassword = true,
-
-                ) { passwordConfirmationValue = it }
+                keyboardType = KeyboardType.Password,
+            ) { passwordConfirmationValue = it }
             Spacer(Modifier.height(15.dp))
 
             FullWidthButton(

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import io.digitallurker.ui.screens.AddAttractionScreen
 import io.digitallurker.ui.screens.EditProfileScreen
 import io.digitallurker.ui.screens.HomeScreen
 import io.digitallurker.ui.screens.LoginScreen
@@ -46,7 +47,7 @@ fun App() {
 
     NavHost(
         navController = navCtrl,
-        startDestination = "/login",
+        startDestination = "/home",
         enterTransition = { fadeIn() },
         exitTransition = { fadeOut() },
     ) {
@@ -56,5 +57,6 @@ fun App() {
         composable("/settings") { SettingsScreen(navCtrl) }
         composable("/edit-profile") { EditProfileScreen(navCtrl) }
         composable("/security") { EditProfileScreen(navCtrl) }
+        composable("/add-attraction") { AddAttractionScreen(navCtrl) }
     }
 }

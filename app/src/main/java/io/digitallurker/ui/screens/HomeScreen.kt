@@ -9,17 +9,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import io.digitallurker.models.Attraction
 import io.digitallurker.ui.components.home.AccountHeadline
-import io.digitallurker.ui.components.home.AttractionElement
 import io.digitallurker.ui.components.home.SearchBar
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
-import io.digitallurker.utils.PrefsManager
 
 @Composable
 fun HomeScreen(navCtrl: NavController) {
@@ -31,7 +27,7 @@ fun HomeScreen(navCtrl: NavController) {
     ) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             AccountHeadline(navCtrl)
-            SearchBar {}
+            SearchBar { /* TODO */ }
             Spacer(Modifier.height(15.dp))
 //            for (i in 0..10) {
 //                AttractionElement(navCtrl, !!!!!!)

@@ -30,7 +30,7 @@ fun AccountHeadline(navCtrl: NavController) {
         )
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.clickable { navCtrl.navigate("/profile") },
+            modifier = Modifier.clickable { navCtrl.navigate("/settings") },
         ) {
             Image(
                 painter = painterResource(R.drawable.authientication_img),

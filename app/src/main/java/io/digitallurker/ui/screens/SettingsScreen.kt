@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Lock
@@ -44,10 +45,16 @@ fun SettingsScreen(navCtrl: NavController) {
             Spacer(Modifier.height(15.dp))
 
             SettingsElement(
+                icon = Icons.Rounded.AddCircle,
+                caption = "Add new location",
+            ) { navCtrl.navigate("/add-attraction") }
+            Spacer(Modifier.height(15.dp))
+
+            SettingsElement(
                 icon = Icons.Rounded.ExitToApp,
                 caption = "Log out",
                 isLogout = true,
-            ) {  }
+            ) { }
         }
     }
 }

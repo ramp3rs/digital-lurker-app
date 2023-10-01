@@ -42,14 +42,14 @@ fun UniversalHeader(
                 Icons.Rounded.KeyboardArrowLeft,
                 contentDescription = "Go back",
                 tint = ColorPalette.background,
-                modifier = Modifier.size(28.dp),
+                modifier = Modifier.size(22.dp),
             )
         }
         Spacer(Modifier.width(10.dp))
 
         Text(
             caption,
-            style = Typing.screenHeadline,
+            style = Typing.headline2,
         )
     }
 }

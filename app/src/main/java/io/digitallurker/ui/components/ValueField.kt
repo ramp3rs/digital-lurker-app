@@ -1,4 +1,4 @@
-package io.digitallurker.ui.components.authientication
+package io.digitallurker.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
@@ -31,7 +31,7 @@ import io.digitallurker.ui.theme.Typing
 fun ValueField(
     caption: String,
     placeholder: String,
-    isPassword: Boolean = false,
+    keyboardType: KeyboardType = KeyboardType.Text,
     onType: (String) -> Unit,
 ) {
     Column {
@@ -71,10 +71,7 @@ fun ValueField(
                 color = ColorPalette.secondary,
                 fontSize = 14.sp,
             ),
-            keyboardOptions = when (isPassword) {
-                true -> KeyboardOptions(keyboardType = KeyboardType.Password)
-                false -> KeyboardOptions.Default
-            },
+            keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = ColorPalette.secondary.copy(alpha = 0.05f),
                 focusedIndicatorColor = Color.Transparent,
@@ -86,6 +83,7 @@ fun ValueField(
                 ),
             ),
             modifier = Modifier
+                .fillMaxWidth()
                 .height(Measurements.textFieldHeight)
                 .clip(Measurements.roundedShape)
                 .border(
@@ -93,7 +91,6 @@ fun ValueField(
                     shape = Measurements.roundedShape,
                     width = 1.5.dp,
                 )
-                .fillMaxWidth()
                 .onFocusChanged { isFocused.value = it.isFocused },
         )
     }
