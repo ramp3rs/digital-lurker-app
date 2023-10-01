@@ -19,6 +19,7 @@ import io.digitallurker.ui.components.UniversalHeader
 import io.digitallurker.ui.components.settings.SettingsElement
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
+import io.digitallurker.utils.PrefsManager
 
 @Composable
 fun SettingsScreen(navCtrl: NavController) {
@@ -54,7 +55,11 @@ fun SettingsScreen(navCtrl: NavController) {
                 icon = Icons.Rounded.ExitToApp,
                 caption = "Log out",
                 isLogout = true,
-            ) { }
+            ) {
+                PrefsManager.getInstance().edit().putString("refresh", "")
+                PrefsManager.getInstance().edit().putString("access", "")
+                navCtrl.navigate("/login")
+            }
         }
     }
 }

@@ -81,7 +81,7 @@ object UserController {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                if (response.code == 201) {
+                if (response.code == 201 || response.code == 200) {
                     successfulSignup = true
                 }
                 println(response.body?.string())

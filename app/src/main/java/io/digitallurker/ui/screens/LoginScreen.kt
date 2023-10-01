@@ -18,18 +18,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.digitallurker.controllers.UserController
 import io.digitallurker.ui.components.authientication.AuthienticationHeadline
 import io.digitallurker.ui.components.FullWidthButton
 import io.digitallurker.ui.components.authientication.LoginSignupText
-import io.digitallurker.ui.components.ValueField
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
 import io.digitallurker.R
+import io.digitallurker.ui.components.ValueField
 import io.digitallurker.utils.PrefsManager
 
 @Composable
@@ -61,7 +60,6 @@ fun LoginScreen(navCtrl: NavController) {
             ValueField(
                 caption = "Password",
                 placeholder = "Provide your password",
-                keyboardType = KeyboardType.Password,
             ) { passwordValue = it }
 
             Spacer(Modifier.height(15.dp))
@@ -69,9 +67,10 @@ fun LoginScreen(navCtrl: NavController) {
             FullWidthButton(
                 onClick = {
                     val res = UserController.login(emailValue, passwordValue)
-                    if (res) {
-                        navCtrl.navigate("/home")
-                    }
+                    println(res)
+                    println(PrefsManager.getInstance().getString("refresh", "error"))
+                    println(PrefsManager.getInstance().getString("access", "error"))
+                    navCtrl.navigate("/home")
                 },
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

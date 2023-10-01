@@ -31,7 +31,20 @@ import io.digitallurker.ui.components.addattraction.ImageDisplay
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
+import io.digitallurker.utils.PrefsManager
+import kotlinx.coroutines.runBlocking
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.FormBody
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.Response
+import org.json.JSONObject
 import java.io.File
+import java.io.IOException
 
 @Composable
 fun AddAttractionScreen(navCtrl: NavController) {
@@ -85,7 +98,9 @@ fun AddAttractionScreen(navCtrl: NavController) {
             ) { lng = it }
             Spacer(Modifier.height(15.dp))
 
-            FullWidthButton(onClick = { /*TODO*/ }) {
+            FullWidthButton(onClick = {
+                addPlace(image!!, name, description, experience, lat, lng)
+            }) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -105,5 +120,49 @@ fun AddAttractionScreen(navCtrl: NavController) {
             }
 
         }
+    }
+}
+
+fun addPlace(
+    image: File,
+    name: String,
+    description: String,
+    experience: String,
+    lat: String,
+    lng: String,
+) {
+    val host = "http://192.168.125.141:8000"
+
+    val client = OkHttpClient()
+
+    val formData = MultipartBody.Builder()
+        .addFormDataPart("name", name)
+        .addFormDataPart("location", "Point($lat $lng")
+        .addFormDataPart("experience", experience)
+        .addFormDataPart("description", description)
+        .addFormDataPart(
+        "main_image",
+        image.name,
+        image.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+    )
+        .build()
+
+    val req = Request.Builder()
+        .url("$host/places/")
+        .post(formData)
+        .build()
+
+    runBlocking{
+        client.newCall(req).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                e.printStackTrace()
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.code == 201 || response.code == 200) {
+                    println("Added")
+                }
+            }
+        })
     }
 }
