@@ -21,12 +21,10 @@ import io.digitallurker.ui.screens.SettingsScreen
 import io.digitallurker.ui.screens.SignupScreen
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.DigitallurkerTheme
-import io.digitallurker.utils.PrefsManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        PrefsManager.initialize(this)
         setContent {
             DigitallurkerTheme {
                 Surface(
@@ -46,7 +44,7 @@ fun App() {
 
     NavHost(
         navController = navCtrl,
-        startDestination = "/login",
+        startDestination = "/signup",
         enterTransition = { fadeIn() },
         exitTransition = { fadeOut() },
     ) {

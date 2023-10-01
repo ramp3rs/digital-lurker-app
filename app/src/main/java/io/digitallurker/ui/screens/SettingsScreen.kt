@@ -40,14 +40,14 @@ fun SettingsScreen(navCtrl: NavController) {
             SettingsElement(
                 icon = Icons.Rounded.Lock,
                 caption = "Security",
-            ) {}
+            ) { navCtrl.navigate("/security") }
             Spacer(Modifier.height(15.dp))
 
             SettingsElement(
                 icon = Icons.Rounded.ExitToApp,
                 caption = "Log out",
                 isLogout = true,
-            ) {}
+            ) {  }
         }
     }
 }

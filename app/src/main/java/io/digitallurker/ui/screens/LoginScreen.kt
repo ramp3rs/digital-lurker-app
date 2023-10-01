@@ -69,11 +69,9 @@ fun LoginScreen(navCtrl: NavController) {
                 onClick = {
                     val res = UserController.login(emailValue, passwordValue)
                     println(res)
-                    if (res!=null) {
-                        println(PrefsManager.getInstance().getString("refresh", "error"))
-                        println(PrefsManager.getInstance().getString("access", "error"))
-                        navCtrl.navigate("/home")
-                    }
+                    println(PrefsManager.getInstance().getString("refresh", "error"))
+                    println(PrefsManager.getInstance().getString("access", "error"))
+                    navCtrl.navigate("/home")
                 },
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {

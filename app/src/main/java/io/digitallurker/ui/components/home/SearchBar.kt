@@ -69,7 +69,7 @@ fun SearchBar(onType: (String) -> Unit) {
             .height(Measurements.textFieldHeight)
             .clip(Measurements.roundedShape)
             .border(
-                color = ColorPalette.primary,
+                color = ColorPalette.secondary.copy(alpha = 0.1f),
                 shape = Measurements.roundedShape,
                 width = 1.5.dp,
             ),

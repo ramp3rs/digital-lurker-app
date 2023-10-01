@@ -46,7 +46,10 @@ fun CustomDatePickerDialog(onDismiss: (String?) -> Unit) {
             shape = Measurements.roundedShape,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(horizontal = Measurements.screenPadding / 2)) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(horizontal = Measurements.screenPadding / 2),
+            ) {
                 Spacer(Modifier.height(5.dp))
                 Text(
                     "Pick a date",
@@ -68,10 +71,11 @@ fun CustomDatePickerDialog(onDismiss: (String?) -> Unit) {
 
                 FullWidthButton(onClick = { onDismiss("$year-$month-$day") }) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Save",
+                        Text(
+                            "Save",
                             style = Typing.subHeadline.copy(color = ColorPalette.background),
                             modifier = Modifier.padding(vertical = 5.dp),
-                            )
+                        )
                         Spacer(Modifier.width(5.dp))
                         Icon(
                             Icons.Rounded.Done,
