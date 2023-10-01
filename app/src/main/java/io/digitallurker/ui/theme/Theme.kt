@@ -24,7 +24,7 @@ fun DigitallurkerTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = ColorPalette.background.toArgb()
+            window.statusBarColor = ColorPalette.background.copy(alpha = 0.1f).toArgb()
             window.navigationBarColor = ColorPalette.background.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
         }

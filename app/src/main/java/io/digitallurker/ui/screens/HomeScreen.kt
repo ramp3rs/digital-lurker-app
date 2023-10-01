@@ -30,7 +30,7 @@ fun HomeScreen(navCtrl: NavController) {
             SearchBar { /* TODO */ }
             Spacer(Modifier.height(15.dp))
 //            for (i in 0..10) {
-//                AttractionElement(navCtrl, !!!!!!)
+//                AttractionElement(navCtrl)
 //            }
         }
     }
