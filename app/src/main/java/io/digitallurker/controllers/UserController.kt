@@ -42,10 +42,10 @@ object UserController {
 
                 override fun onResponse(call: Call, response: Response) {
                     if (response.code == 201 || response.code == 200) {
-                        successfulLogin = true
                         val res = response.body?.string()
                         PrefsManager.getInstance().edit().putString("refresh", JSONObject(res).getString("refresh")).apply()
                         PrefsManager.getInstance().edit().putString("access", JSONObject(res).getString("access")).apply()
+                        successfulLogin = true
                     }
                 }
             })

@@ -19,12 +19,13 @@ import io.digitallurker.ui.components.home.SearchBar
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.utils.PrefsManager
+import io.digitallurker.utils.TokenManager.getNewToken
 
 @Composable
 fun HomeScreen(navCtrl: NavController) {
     LaunchedEffect(Unit) {
-        println(PrefsManager.getInstance().getString("refresh", "error"))
         println(PrefsManager.getInstance().getString("access", "error"))
+        getNewToken()
     }
 
     Surface(

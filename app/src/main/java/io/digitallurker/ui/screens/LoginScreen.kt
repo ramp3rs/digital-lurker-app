@@ -67,10 +67,7 @@ fun LoginScreen(navCtrl: NavController) {
 
             FullWidthButton(
                 onClick = {
-                    val res = UserController.login(emailValue, passwordValue)
-                    println(res)
-                    println(PrefsManager.getInstance().getString("refresh", "error"))
-                    println(PrefsManager.getInstance().getString("access", "error"))
+                    UserController.login(emailValue, passwordValue)
                     navCtrl.navigate("/home")
                 },
             ) {
