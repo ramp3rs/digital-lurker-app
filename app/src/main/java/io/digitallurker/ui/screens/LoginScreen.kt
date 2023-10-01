@@ -42,7 +42,7 @@ fun LoginScreen(navCtrl: NavController) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
                 painter = painterResource(R.drawable.authientication_img),
-                contentDescription = "Authientication image",
+                contentDescription = "Authentication image",
             )
 
             AuthienticationHeadline("Welcome back!")
@@ -67,7 +67,10 @@ fun LoginScreen(navCtrl: NavController) {
 
             FullWidthButton(
                 onClick = {
-                    UserController.login(emailValue, passwordValue)
+                    val res = UserController.login(emailValue, passwordValue)
+                    println(res)
+                    println(PrefsManager.getInstance().getString("refresh", "error"))
+                    println(PrefsManager.getInstance().getString("access", "error"))
                     navCtrl.navigate("/home")
                 },
             ) {

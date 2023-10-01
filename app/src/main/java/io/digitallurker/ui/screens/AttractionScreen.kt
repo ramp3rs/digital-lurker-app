@@ -1,35 +1,34 @@
 package io.digitallurker.ui.screens
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.BottomSheetScaffold
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import io.digitallurker.ui.theme.ColorPalette
-import io.digitallurker.ui.theme.Measurements
-import io.digitallurker.ui.theme.Typing
+import io.digitallurker.R
+import io.digitallurker.models.Attraction
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AttractionScreen() {
-    BottomSheetScaffold(
-        sheetContainerColor = ColorPalette.background,
-        containerColor = ColorPalette.background,
-        sheetContent = {
-            Column {
-                Text(
-                    "Attraction Name",
-                    style = Typing.headline2,
-                )
-            }
-        },
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = Measurements.screenPadding),
+fun AttractionScreen(attraction: Attraction) {
+    Surface(
+        color = ColorPalette.background,
+        modifier = Modifier.fillMaxSize(),
     ) {
+        Box {
+            Image(
+                painterResource(R.drawable.example_img),
+                contentDescription = "Image of attraction",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Box(modifier = Modifier.fillMaxWidth()) {
 
+            }
+        }
     }
 }

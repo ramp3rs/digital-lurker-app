@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ArrowForward
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.Icon
@@ -31,12 +30,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import io.digitallurker.R
+import io.digitallurker.models.Attraction
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.ui.theme.Typing
 
 @Composable
-fun AttractionElement(navCtrl: NavController) {
+fun AttractionElement(
+    navCtrl: NavController,
+    attraction: Attraction,
+) {
     Column {
         Box(
             modifier = Modifier

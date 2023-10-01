@@ -13,21 +13,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import io.digitallurker.models.Attraction
 import io.digitallurker.ui.components.home.AccountHeadline
 import io.digitallurker.ui.components.home.AttractionElement
 import io.digitallurker.ui.components.home.SearchBar
 import io.digitallurker.ui.theme.ColorPalette
 import io.digitallurker.ui.theme.Measurements
 import io.digitallurker.utils.PrefsManager
-import io.digitallurker.utils.TokenManager.getNewToken
 
 @Composable
 fun HomeScreen(navCtrl: NavController) {
-    LaunchedEffect(Unit) {
-        println(PrefsManager.getInstance().getString("access", "error"))
-        getNewToken()
-    }
-
     Surface(
         color = ColorPalette.background,
         modifier = Modifier
@@ -37,11 +32,10 @@ fun HomeScreen(navCtrl: NavController) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             AccountHeadline(navCtrl)
             SearchBar {}
-//            CategoryHeadline("Near you") {}
             Spacer(Modifier.height(15.dp))
-            for (i in 0..10) {
-                AttractionElement(navCtrl)
-            }
+//            for (i in 0..10) {
+//                AttractionElement(navCtrl, !!!!!!)
+//            }
         }
     }
 }
