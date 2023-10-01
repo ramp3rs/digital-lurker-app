@@ -13,6 +13,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.digitallurker.models.Attraction
 import io.digitallurker.ui.components.home.AccountHeadline
 import io.digitallurker.ui.components.home.AttractionElement
@@ -35,7 +37,7 @@ import java.io.IOException
 
 @Composable
 fun HomeScreen(navCtrl: NavController) {
-    LaunchedEffect(Unit){
+    LaunchedEffect(Unit) {
         getPlaces("Point(51.399653660577 21.149885920182005)", "50000000000")
     }
     Surface(
@@ -58,7 +60,7 @@ fun HomeScreen(navCtrl: NavController) {
 fun getPlaces(
     point: String,
     range: String,
-) {
+): List<Attraction> {
     val host = "http://192.168.125.141:8000"
 
     val client = OkHttpClient()
@@ -73,7 +75,10 @@ fun getPlaces(
         .header("point", point)
         .header("Authorization", "Bearer $access")
         .build()
-    runBlocking{
+
+    var attractions = emptyList<Attraction>()
+
+    runBlocking {
         client.newCall(req).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()
@@ -82,16 +87,22 @@ fun getPlaces(
             override fun onResponse(call: Call, response: Response) {
                 if (response.code == 201 || response.code == 200) {
                     val res = response.body?.string()
-
-                    println(res)
-                } else if(response.code == 401){
+                    if (res != null) {
+                        val jsonResponse = JSONObject(res).getString("results")
+                        val gson = Gson()
+                        val listType = object : TypeToken<List<Attraction>>() {}.type
+                        val attractionList: List<Attraction> = gson.fromJson(jsonResponse, listType)
+                        attractions = attractionList
+                    }
+                } else if (response.code == 401) {
                     println("Error")
                     getNewToken()
                     getPlaces(point, range)
-                }else {
+                } else {
                     println("Error code: $response")
                 }
             }
         })
     }
+    return attractions
 }

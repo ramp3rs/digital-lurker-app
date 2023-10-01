@@ -89,6 +89,7 @@ fun AddAttractionScreen(navCtrl: NavController) {
                 placeholder = "Provide location's latitude",
                 keyboardType = KeyboardType.Decimal,
             ) { lat = it }
+            Spacer(Modifier.height(15.dp))
 
             var lng = ""
             ValueField(

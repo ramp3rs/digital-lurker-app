@@ -43,7 +43,7 @@ fun AttractionScreen(
 ) {
     val deviceMetrics = Resources.getSystem().displayMetrics
     val deviceHeight = (deviceMetrics.heightPixels / deviceMetrics.density).dp
-    val imageHeiht = 180.dp
+    val imageHeight = 180.dp
     Surface(
         color = ColorPalette.background,
         modifier = Modifier.fillMaxSize(),
@@ -59,13 +59,13 @@ fun AttractionScreen(
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(imageHeiht),
+                        .height(imageHeight),
                 )
             }
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(deviceHeight - imageHeiht + 30.dp)
+                    .height(deviceHeight - imageHeight + 30.dp)
                     .background(
                         color = ColorPalette.background, shape = RoundedCornerShape(
                             topStart = 30.dp,
@@ -115,7 +115,7 @@ fun AttractionScreen(
                                 painterResource(R.drawable.example_img),
                                 contentDescription = "Photos",
                                 modifier = Modifier
-                                    .height(imageHeiht)
+                                    .height(imageHeight)
                                     .clip(Measurements.roundedShape),
                             )
                             Spacer(Modifier.width(15.dp))
