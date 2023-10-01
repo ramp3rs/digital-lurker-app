@@ -10,6 +10,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -37,8 +39,9 @@ import java.io.IOException
 
 @Composable
 fun HomeScreen(navCtrl: NavController) {
+    val places = remember { mutableStateOf(emptyList<Attraction>()) }
     LaunchedEffect(Unit) {
-        getPlaces("Point(51.399653660577 21.149885920182005)", "50000000000")
+        places.value = getPlaces("Point(51.399653660577 21.149885920182005)", "50000000000")
     }
     Surface(
         color = ColorPalette.background,
@@ -50,9 +53,9 @@ fun HomeScreen(navCtrl: NavController) {
             AccountHeadline(navCtrl)
             SearchBar {}
             Spacer(Modifier.height(15.dp))
-//            for (i in 0..10) {
-//                AttractionElement(navCtrl)
-//            }
+            for (p in places.value) {
+                AttractionElement(navCtrl, p)
+            }
         }
     }
 }
